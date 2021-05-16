@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as HttpStatus from 'http-status-codes';
 
-const app:Koa = new Koa();
+const app: Koa = new Koa();
 
 // Generic error handling middleware.
 app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
@@ -16,7 +16,7 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 });
 
 // Initial route
-app.use(async (ctx:Koa.Context) => {
+app.use(async (ctx: Koa.Context) => {
   ctx.body = 'Hello world';
 });
 

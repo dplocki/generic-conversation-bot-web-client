@@ -1,0 +1,41 @@
+{
+  "name": "generic-conversation-bot-web-client",
+  "version": "0.0.1",
+  "description": "The web client for the chat bot",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json --format stylish",
+    "build": "tsc",
+    "serve": "ts-node src/server.ts",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dplocki/generic-conversation-bot-web-client.git"
+  },
+  "keywords": [
+    "chat",
+    "bot"
+  ],
+  "author": "Dawid Płocki",
+  "license": "GNU v3",
+  "bugs": {
+    "url": "https://github.com/dplocki/generic-conversation-bot-web-client/issues"
+  },
+  "homepage": "https://github.com/dplocki/generic-conversation-bot-web-client#readme",
+  "dependencies": {
+    "koa": "^2.13.1"
+  },
+  "devDependencies": {
+    "@types/http-status-codes": "^1.2.0",
+    "@types/koa": "^2.13.1",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-router": "^7.4.2",
+    "@types/node": "^15.3.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.9.9"
+  }
+}

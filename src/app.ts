@@ -3,7 +3,6 @@ import * as HttpStatus from 'http-status-codes';
 
 const app: Koa = new Koa();
 
-// Generic error handling middleware.
 app.use(async (context: Koa.Context, next: () => Promise<any>) => {
   try {
     await next();
@@ -17,13 +16,6 @@ app.use(async (context: Koa.Context, next: () => Promise<any>) => {
   }
 });
 
-// Initial route
-app.use(async (context: Koa.Context) => {
-  context.body = 'Hello world';
-  context.status = HttpStatus.StatusCodes.OK;
-});
-
-// Application error logging.
 app.on('error', console.error);
 
 export default app;

@@ -25,13 +25,17 @@
   "homepage": "https://github.com/dplocki/generic-conversation-bot-web-client#readme",
   "dependencies": {
     "koa": "^2.13.1",
-    "koa-router": "^10.0.0"
+    "koa-router": "^10.0.0",
+    "koa-send": "^5.0.1",
+    "koa-static": "^5.0.0"
   },
   "devDependencies": {
     "@types/http-status-codes": "^1.2.0",
     "@types/koa": "^2.13.1",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.4.2",
+    "@types/koa-send": "^4.1.2",
+    "@types/koa-static": "^4.0.1",
     "@types/node": "^15.3.0",
     "nodemon": "^2.0.7",
     "ts-node": "^9.1.1",

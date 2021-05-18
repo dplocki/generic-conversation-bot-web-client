@@ -1,5 +1,7 @@
 import * as Koa from 'koa';
 import * as HttpStatus from 'http-status-codes';
+import * as serve from 'koa-static';
+import * as path from 'path';
 
 const app: Koa = new Koa();
 
@@ -15,6 +17,8 @@ app.use(async (context: Koa.Context, next: () => Promise<any>) => {
     context.app.emit('error', error, context);
   }
 });
+
+app.use(serve(path.join(__dirname, '/../public')));
 
 app.on('error', console.error);
 

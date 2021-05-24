@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/dplocki/generic-conversation-bot-web-client#readme",
   "dependencies": {
+    "@dplocki/generic-conversation-bot": "^0.1.0",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
     "koa-send": "^5.0.1",
@@ -42,5 +43,8 @@
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.9.9"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

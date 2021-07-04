@@ -2,42 +2,34 @@
 // Project: https://github.com/dplocki/generic-conversation-bot
 declare module '@dplocki/generic-conversation-bot' {
 
+  interface Json {
+    [key: string]: string | number | boolean | Date | Json | JsonArray;
+  }
+
+  interface JsonArray extends Array<string | number | boolean | Date | Json | JsonArray> { }
+
   class Bot {
-      constructor(...args: any[]);
-
-      addAction(...args: any[]): void;
-
-      jumpToState(...args: any[]): void;
-
-      message(...args: any[]): void;
-
-      nextAction(...args: any[]): void;
-
-      reset(...args: any[]): void;
-
+    constructor(statesMap: Bot);
+    addAction(actionSource: Array<Function>): void;
+    jumpToState(stateName: string): void;
+    message(message: string): {};
+    nextAction(): void;
+    reset(): void;
   }
 
   class ParserBuilder {
-      constructor(...args: any[]);
-
-      addCustomActions(...args: any[]): void;
-
-      addCustomStates(...args: any[]): void;
-
-      addPreParsers(...args: any[]): void;
-
-      parse(...args: any[]): void;
-
-    }
-
-  class Simplifier {
-      constructor(...args: any[]);
-
-      message(...args: any[]): void;
-
-      reset(...args: any[]): void;
-
+    constructor();
+    addCustomActions(actions: { [key: string]: Function }): void;
+    addCustomStates(states: { [key: string]: Function }): void;
+    addPreParsers(preParsers: { [key: string]: Function }): void;
+    parse(jsonStatesArray: JsonArray): Bot;
   }
 
-  function buildBot(stateMap: any): void;
+  class Simplifier {
+    constructor(bot: Bot);
+    message(message: string): string;
+    reset(): void;
+  }
+
+  function buildBot(stateMap: any): Simplifier;
 }

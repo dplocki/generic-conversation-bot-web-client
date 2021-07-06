@@ -10,5 +10,8 @@
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "typeRoots": [
+      "types/"
+    ]
   }
 }

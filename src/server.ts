@@ -6,12 +6,13 @@ import * as serve from 'koa-static';
 import * as session from 'koa-session';
 import * as Router from 'koa-router';
 import * as bodyParser from 'koa-bodyparser';
+import bot from './bot';
 
 const PORT: number = Number(process.env.PORT) || 3000;
 const app: Koa = new Koa();
 const router: Router = new Router();
 
-router.get('/', async (context: any, next) => {
+router.get('/', async (context: any) => {
   if (context.path === '/favicon.ico') {
     return;
   }
@@ -21,14 +22,23 @@ router.get('/', async (context: any, next) => {
   });
 });
 
-router.post('/', async (context, next) => {
+router.post('/', async (context) => {
   if (context.session.isNew) {
     context.session.chatHistory = [];
   }
 
   context.session.chatHistory = [
     ...context.session.chatHistory,
-    context.request.body.value,
+    {
+      timestamp: new Date(),
+      who: 'user',
+      message: context.request.body.value,
+    },
+    {
+      message: bot.message(context.request.body.value),
+      timestamp: new Date(),
+      who: 'bot',
+    },
   ];
 
   context.redirect('.');

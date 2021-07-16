@@ -13,9 +13,11 @@
       <h1>Speak with bot</h1>
     </header>
 
-    <% chatHistory.forEach(function(entry) { %>
-      <p><%= entry %></p>
-    <% }); %>
+    <div>
+      <% chatHistory.forEach(function(entry) { %>
+        <p>[<%= new Date(entry.timestamp).toISOString().split('T')[1].substring(0, 8) %>]: <%= entry.message %></p>
+      <% }); %>
+    </div>
 
     <form method="POST" action="/">
       <input type="text" name="value" />

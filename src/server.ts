@@ -51,7 +51,7 @@ router.post('/', async (context: Koa.Context) => {
   context.redirect('.');
 });
 
-app.keys = ['secret'];
+app.keys = [process.env.COOKIES_KEY || 'bot-speaker-secret'];
 app.use(bodyParser());
 app.use(session({}, app));
 

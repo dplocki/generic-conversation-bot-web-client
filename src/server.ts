@@ -6,11 +6,13 @@ import * as serve from 'koa-static';
 import * as session from 'koa-session';
 import * as Router from 'koa-router';
 import * as bodyParser from 'koa-bodyparser';
-import bot from './bot';
+import createBot from './bot';
+import { Simplifier } from '@dplocki/generic-conversation-bot';
 
 const PORT: number = Number(process.env.PORT) || 3000;
 const app: Koa = new Koa();
 const router: Router = new Router();
+const botBasket: { [key: number]: Simplifier } = {};
 
 function addMessageToChatHistory(message: string, who: string): any {
   return {
@@ -33,9 +35,12 @@ router.get('/', async (context: Koa.Context) => {
 router.post('/', async (context: Koa.Context) => {
   if (context.session.isNew) {
     context.session.chatHistory = [];
+    context.session.id = Object.keys(botBasket).length + 1;
+    botBasket[context.session.id] = createBot();
   }
 
   const userMessage = context.request.body.value;
+  const bot = botBasket[context.session.id];
 
   context.session.chatHistory = [
     ...context.session.chatHistory,

@@ -36,6 +36,4 @@ const contents = [
   },
 ];
 
-const bot = buildBot(new ParserBuilder().parse(contents));
-
-export default bot;
+export default () => buildBot(new ParserBuilder().parse(contents));

@@ -12,7 +12,15 @@ const PORT: number = Number(process.env.PORT) || 3000;
 const app: Koa = new Koa();
 const router: Router = new Router();
 
-router.get('/', async (context: any) => {
+function addMessageToChatHistory(message: string, who: string): any {
+  return {
+    who,
+    message,
+    timestamp: new Date(),
+  };
+}
+
+router.get('/', async (context: Koa.Context) => {
   if (context.path === '/favicon.ico') {
     return;
   }
@@ -22,23 +30,17 @@ router.get('/', async (context: any) => {
   });
 });
 
-router.post('/', async (context) => {
+router.post('/', async (context: Koa.Context) => {
   if (context.session.isNew) {
     context.session.chatHistory = [];
   }
 
+  const userMessage = context.request.body.value;
+
   context.session.chatHistory = [
     ...context.session.chatHistory,
-    {
-      timestamp: new Date(),
-      who: 'user',
-      message: context.request.body.value,
-    },
-    {
-      message: bot.message(context.request.body.value),
-      timestamp: new Date(),
-      who: 'bot',
-    },
+    addMessageToChatHistory(userMessage, 'user'),
+    addMessageToChatHistory(bot.message(userMessage), 'bot'),
   ];
 
   context.redirect('.');

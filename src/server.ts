@@ -22,6 +22,10 @@ function addMessageToChatHistory(message: string, who: string): any {
   };
 }
 
+function getRandomName(): string {
+  return Math.random().toString().substr(2, 8);
+}
+
 router.get('/', async (context: Koa.Context) => {
   if (context.path === '/favicon.ico') {
     return;
@@ -35,7 +39,7 @@ router.get('/', async (context: Koa.Context) => {
 router.post('/', async (context: Koa.Context) => {
   if (context.session.isNew) {
     context.session.chatHistory = [];
-    context.session.id = Object.keys(botBasket).length + 1;
+    context.session.id = getRandomName();
     botBasket[context.session.id] = createBot();
   }
 

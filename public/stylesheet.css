@@ -1,7 +1,107 @@
+/**
+ * Based on Alternating Speech Bubbles (with element queries) by Tommy Hodgins
+ */
+* {
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
+}
+
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  width: 75%;
+  margin: auto;
 }
 
 h1 {
   color: teal;
+}
+
+.dialog {
+  --size: 10pt;
+  --bg: darkslateblue;
+  display: block;
+}
+
+form input[type="text"] {
+  width: 80%;
+}
+
+form input[type="submit"] {
+  width: 19%;
+}
+
+.balloon {
+  display: block;
+  position: relative;
+  margin-bottom: calc(var(--size));
+  padding: var(--size);
+  background-color: var(--bg);
+  border-radius: calc(var(--size) / 1);
+  color: white;
+  font-size: calc(var(--size) * 1.2);
+  line-height: 1.4;
+  font-family: sans-serif;
+}
+
+.balloon.user {
+  --bg: slateblue;
+  margin-left: calc(var(--size) * 11);
+}
+
+.balloon.bot {
+  margin-right: calc(var(--size) * 11);
+}
+
+.balloon > span {
+  display: inline;
+  margin: 0;
+}
+
+.balloon > span.balloon-date {
+  display: block;
+  font-size: xx-small;
+}
+
+@supports (--element(".balloon", {"minWidth": 500})) {
+  [--self] .balloon {
+    margin-bottom: calc(var(--size) * 3);
+  }
+
+  [--self] .balloon:nth-of-type(even)::after {
+    --translate: 0;
+    left: calc(var(--size) * 2);
+  }
+
+  [--self] .balloon:nth-of-type(odd) {
+    margin-left: calc(var(--size) * 5);
+  }
+
+  [--self] .balloon:nth-of-type(even) {
+    margin-right: calc(var(--size) * 5);
+  }
+}
+
+@supports (--element(".balloon", {"minWidth": 900})) {
+  .balloon {
+    font-size: calc(var(--size) * 1.4);
+  }
+
+  [--self] .balloon {
+    max-width: 60%;
+    margin-bottom: calc(var(--size) * 5);
+  }
+
+  [--self] .balloon:nth-of-type(odd) {
+    margin-left: 30%;
+    margin-right: 10%;
+  }
+
+  [--self] .balloon:nth-of-type(even) {
+    margin-left: 10%;
+    margin-right: 30%;
+  }
 }

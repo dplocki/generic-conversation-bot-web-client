@@ -13,10 +13,13 @@
       <h1>Speak with bot</h1>
     </header>
 
-    <div>
-      <% chatHistory.forEach(function(entry) { %>
-        <p>[<%= new Date(entry.timestamp).toISOString().split('T')[1].substring(0, 8) %>]: <%= entry.message %></p>
-      <% }); %>
+    <div class="dialog">
+    <% chatHistory.forEach(function(entry) { %>
+      <div class="balloon <%= entry.who %>">
+        <span class="balloon-date"><%= new Date(entry.timestamp).toISOString().split('T')[1].substring(0, 8) %></span>
+        <span class="balloon-text"><%= entry.message %></span>
+      </div>
+    <% }); %>
     </div>
 
     <form method="POST" action="/">

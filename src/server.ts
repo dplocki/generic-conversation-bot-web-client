@@ -9,6 +9,10 @@ import * as bodyParser from 'koa-bodyparser';
 import createBot from './bot';
 import { Simplifier } from '@dplocki/generic-conversation-bot';
 
+type PostResponse = {
+  value: string,
+};
+
 const PORT: number = Number(process.env.PORT) || 3000;
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -43,7 +47,7 @@ router.post('/', async (context: Koa.Context) => {
     botBasket[context.session.id] = createBot();
   }
 
-  const userMessage = context.request.body.value;
+  const userMessage = (context.request.body as PostResponse).value;
   const bot = botBasket[context.session.id];
 
   context.session.chatHistory = [

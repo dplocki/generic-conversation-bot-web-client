@@ -29,6 +29,7 @@ declare module '@dplocki/generic-conversation-bot' {
     constructor(bot: Bot);
     message(message: string): string;
     reset(): void;
+    isReset: boolean;
   }
 
   function buildBot(stateMap: any): Simplifier;

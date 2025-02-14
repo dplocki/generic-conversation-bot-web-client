@@ -25,7 +25,7 @@
   "homepage": "https://github.com/dplocki/generic-conversation-bot-web-client#readme",
   "dependencies": {
     "@dplocki/generic-conversation-bot": "^1.1.0",
-    "koa": "^2.13.1",
+    "koa": "^2.15.4",
     "koa-bodyparser": "^4.3.0",
     "koa-ejs": "^4.3.0",
     "koa-router": "^10.0.0",
